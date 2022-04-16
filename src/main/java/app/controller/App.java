@@ -2,6 +2,7 @@ package app.controller;
 
 import app.domain.model.Company;
 import app.domain.model.VacinationCenter;
+import app.domain.model.VacineType;
 import app.domain.shared.Constants;
 import app.metadata.Singleton;
 import pt.isep.lei.esoft.auth.AuthFacade;
@@ -10,9 +11,7 @@ import pt.isep.lei.esoft.auth.UserSession;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Properties;
+import java.util.*;
 
 /**
  * @author Paulo Maio <pam@isep.ipp.pt>
@@ -27,11 +26,14 @@ public class App {
 
     private final List<VacinationCenter> vacinationCenters;
 
+    private final Set<VacineType> vacineTypes;
+
     private App() {
         Properties props = getProperties();
         this.company = new Company(props.getProperty(Constants.PARAMS_COMPANY_DESIGNATION));
         this.authFacade = this.company.getAuthFacade();
         vacinationCenters = new LinkedList<>();
+        vacineTypes = new LinkedHashSet<>();
         bootstrap();
     }
 
@@ -86,5 +88,9 @@ public class App {
 
     public List<VacinationCenter> getVacinationCenters() {
         return vacinationCenters;
+    }
+
+    public Set<VacineType> getVacineTypes() {
+        return vacineTypes;
     }
 }
