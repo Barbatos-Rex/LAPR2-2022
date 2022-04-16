@@ -1,18 +1,23 @@
 package app.controller;
 
 import app.domain.model.Company;
+import app.domain.model.VacinationCenter;
 import app.domain.shared.Constants;
+import app.metadata.Singleton;
 import pt.isep.lei.esoft.auth.AuthFacade;
 import pt.isep.lei.esoft.auth.UserSession;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Properties;
 
 /**
  * @author Paulo Maio <pam@isep.ipp.pt>
  */
+@Singleton
 public class App {
 
     // Extracted from https://www.javaworld.com/article/2073352/core-java/core-java-simply-singleton.html?page=2
@@ -20,10 +25,13 @@ public class App {
     private final Company company;
     private final AuthFacade authFacade;
 
+    private final List<VacinationCenter> vacinationCenters;
+
     private App() {
         Properties props = getProperties();
         this.company = new Company(props.getProperty(Constants.PARAMS_COMPANY_DESIGNATION));
         this.authFacade = this.company.getAuthFacade();
+        vacinationCenters = new LinkedList<>();
         bootstrap();
     }
 
@@ -74,5 +82,9 @@ public class App {
         this.authFacade.addUserRole(Constants.ROLE_ADMIN, Constants.ROLE_ADMIN);
 
         this.authFacade.addUserWithRole("Main Administrator", "admin@lei.sem2.pt", "123456", Constants.ROLE_ADMIN);
+    }
+
+    public List<VacinationCenter> getVacinationCenters() {
+        return vacinationCenters;
     }
 }
