@@ -1,0 +1,80 @@
+@startuml
+
+hide methods
+
+
+class User{
+    - name : String
+    - email : String
+    - password: String
+}
+
+class Administrator{
+}
+
+class Role{
+}
+
+class Vacine{
+}
+
+class VacineType{
+}
+
+class AdministrationProcess{
+}
+
+class VacinationCenter{
+- name : String
+- address : String
+- phone number : String
+- e-mail address : String
+- fax number : String
+- website address : String
+- opening hours : String
+- closing hours : String
+- slot duration minutes : int
+- vacines slot cap : int
+}
+
+class StaffList{
+
+}
+
+class Group{
+  - dosage : int
+}
+
+class AgeRange{
+}
+
+class OrderDose{
+    - current dose : int
+    - time to next dose : int
+}
+
+
+
+
+Vacine "1" ---"1"VacineType
+User "1" ---"1..*"Role
+VacinationCenter"1"---"1"StaffList
+StaffList"1"---"*"User
+Vacine"1"---"1"AdministrationProcess
+
+
+Administrator"1"---"*"VacinationCenter: registers >
+Administrator"1"---"*"User: creates >
+Administrator"1"---"1" User : has >
+VacinationCenter"1"---"1"User: < coordinates
+AdministrationProcess"1"---"1..*"Group : has >
+Group"1"---"1"AgeRange: has >
+Group"1"---"1..*"OrderDose: has >
+
+note "All users may not need to be implemented\nin the system and be controlled by role" as n1
+
+
+
+
+
+@enduml
