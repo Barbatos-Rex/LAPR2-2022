@@ -1,9 +1,6 @@
 package app.ui.console;
 
-import app.ui.console.admin.RegisterSNSUserUI;
-import app.ui.console.admin.RegisterVacinationCenterUI;
-import app.ui.console.admin.RegisterVacineTypeUI;
-import app.ui.console.admin.RegisterVacineUI;
+import app.ui.console.admin.*;
 import app.ui.console.utils.Utils;
 
 import java.util.ArrayList;
@@ -23,7 +20,8 @@ public class AdminUI implements Runnable {
         options.add(new MenuItem("Register Vacine Type ", new RegisterVacineTypeUI()));
         options.add(new MenuItem("Register Vacine", new RegisterVacineUI()));
         options.add(new MenuItem("Register SNS User", new RegisterSNSUserUI()));
-        options.add(new MenuItem("Option E ", new ShowTextUI("You have chosen Option E.")));
+        options.add(new MenuItem("Register Employee", new RegisterEmployeeUI()));
+        options.add(new MenuItem("Option F ", new ShowTextUI("You have chosen Option F.")));
 
         int option = 0;
         do {

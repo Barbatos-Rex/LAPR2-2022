@@ -1,8 +1,11 @@
 package app.domain.model;
 
-import pt.isep.lei.esoft.auth.domain.model.User;
+import app.domain.dto.VacinationCenterDTO;
+import app.domain.shared.DTOable;
 
-public class VacinationCenter {
+import java.util.Objects;
+
+public class VacinationCenter implements DTOable<VacinationCenterDTO> {
     private final String name;
     private final String address;
     private final String phoneNumber;
@@ -31,7 +34,15 @@ public class VacinationCenter {
         staff = new StaffList();
     }
 
-    public void addStaff(User staff) {
+    public static String generatekey(String name, String address) {
+        return name + address;
+    }
+
+    public static String generatekey(VacinationCenter vc) {
+        return generatekey(vc.name, vc.address);
+    }
+
+    public void addStaff(Employee staff) {
         this.staff.addStaff(staff);
     }
 
@@ -50,5 +61,24 @@ public class VacinationCenter {
                 ", slotDuration=" + slotDuration +
                 ", staff=" + staff +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        VacinationCenter that = (VacinationCenter) o;
+        return Objects.equals(name, that.name) && Objects.equals(address, that.address);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, address);
+    }
+
+    @Override
+    public VacinationCenterDTO toDTO() {
+
+        return new VacinationCenterDTO(name, address, phoneNumber, email, website, fax, openHours, closingHours, vacinesSlotCap, slotDuration, staff.toDTO());
     }
 }

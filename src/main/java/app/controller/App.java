@@ -22,7 +22,7 @@ public class App {
     private final Company company;
     private final AuthFacade authFacade;
 
-    private final List<VacinationCenter> vacinationCenters;
+    private final Map<String, VacinationCenter> vacinationCenters;
 
     private final Set<VacineType> vacineTypes;
 
@@ -34,7 +34,7 @@ public class App {
         Properties props = getProperties();
         this.company = new Company(props.getProperty(Constants.PARAMS_COMPANY_DESIGNATION));
         this.authFacade = this.company.getAuthFacade();
-        vacinationCenters = new LinkedList<>();
+        vacinationCenters = new LinkedHashMap<>();
         vacineTypes = new LinkedHashSet<>();
         vacines = new LinkedHashSet<>();
         snsUsers = new LinkedHashSet<>();
@@ -90,7 +90,7 @@ public class App {
         this.authFacade.addUserWithRole("Main Administrator", "admin@lei.sem2.pt", "123456", Constants.ROLE_ADMIN);
     }
 
-    public List<VacinationCenter> getVacinationCenters() {
+    public Map<String, VacinationCenter> getVacinationCenters() {
         return vacinationCenters;
     }
 

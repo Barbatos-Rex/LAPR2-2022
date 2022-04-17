@@ -19,10 +19,10 @@ public class RegisterVacinationCenter {
         }
 
         VacinationCenter vc = new VacinationCenter(name, address, phoneNumber, email, website, fax, openHours, closingHours, vacinesSlotCap, slotDuration);
-        if (app.getVacinationCenters().contains(vc)) {
+        if (app.getVacinationCenters().containsValue(vc)) {
             return false;
         }
-        return app.getVacinationCenters().add(vc);
+        return app.getVacinationCenters().put(VacinationCenter.generatekey(vc), vc) != null;
     }
 
     private boolean validateData(String name, String address, String phoneNumber, String email, String website, String fax, String openHours, String closingHours, int vacinesSlotCap, int slotDuration) {
