@@ -1,9 +1,6 @@
 package app.controller;
 
-import app.domain.model.Company;
-import app.domain.model.VacinationCenter;
-import app.domain.model.Vacine;
-import app.domain.model.VacineType;
+import app.domain.model.*;
 import app.domain.shared.Constants;
 import app.metadata.Singleton;
 import pt.isep.lei.esoft.auth.AuthFacade;
@@ -31,6 +28,8 @@ public class App {
 
     private final Set<Vacine> vacines;
 
+    private final Set<SNSUser> snsUsers;
+
     private App() {
         Properties props = getProperties();
         this.company = new Company(props.getProperty(Constants.PARAMS_COMPANY_DESIGNATION));
@@ -38,6 +37,7 @@ public class App {
         vacinationCenters = new LinkedList<>();
         vacineTypes = new LinkedHashSet<>();
         vacines = new LinkedHashSet<>();
+        snsUsers = new LinkedHashSet<>();
     }
 
     public static App getInstance() {
@@ -100,5 +100,9 @@ public class App {
 
     public Set<Vacine> getVacines() {
         return vacines;
+    }
+
+    public Set<SNSUser> getSnsUsers() {
+        return snsUsers;
     }
 }

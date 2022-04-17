@@ -45,7 +45,6 @@ public class RegisterVacine {
             });
 
             Vacine v = new Vacine(t, administrationProcesses, name);
-            System.out.println(v);
             return this.app.getVacines().add(v);
 
         }
