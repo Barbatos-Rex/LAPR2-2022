@@ -1,6 +1,6 @@
 package app.ui;
 
-import app.ui.console.MainMenuUI;
+import app.ui.console.AdminUI;
 
 /**
  * @author Paulo Maio <pam@isep.ipp.pt>
@@ -11,8 +11,8 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            MainMenuUI menu = new MainMenuUI();
-
+//            Runnable menu = new MainMenuUI();
+            Runnable menu = new AdminUI();
             menu.run();
         } catch (Exception e) {
             e.printStackTrace();

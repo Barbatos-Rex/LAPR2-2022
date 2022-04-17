@@ -1,8 +1,11 @@
 package app.domain.model;
 
+import app.domain.dto.VacineTypeDTO;
+import app.domain.shared.DTOable;
+
 import java.util.Objects;
 
-public class VacineType {
+public class VacineType implements DTOable<VacineTypeDTO> {
     private final String name;
 
 
@@ -33,5 +36,10 @@ public class VacineType {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public VacineTypeDTO toDTO() {
+        return new VacineTypeDTO(this.name);
     }
 }

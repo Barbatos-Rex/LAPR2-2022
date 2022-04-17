@@ -2,6 +2,7 @@ package app.ui.console;
 
 import app.ui.console.admin.RegisterVacinationCenterUI;
 import app.ui.console.admin.RegisterVacineTypeUI;
+import app.ui.console.admin.RegisterVacineUI;
 import app.ui.console.utils.Utils;
 
 import java.util.ArrayList;
@@ -19,7 +20,8 @@ public class AdminUI implements Runnable {
         List<MenuItem> options = new ArrayList<MenuItem>();
         options.add(new MenuItem("Register Vacination Center ", new RegisterVacinationCenterUI()));
         options.add(new MenuItem("Register Vacine Type ", new RegisterVacineTypeUI()));
-        options.add(new MenuItem("Option C ", new ShowTextUI("You have chosen Option C.")));
+        options.add(new MenuItem("Register Vacine", new RegisterVacineUI()));
+        options.add(new MenuItem("Option D ", new ShowTextUI("You have chosen Option D.")));
 
         int option = 0;
         do {
